@@ -554,19 +554,420 @@
 
 		
 --------------------------------------------------------------------------		
+## 	Full Implementation of LinkedList
 
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
+	Code Snippet:
+	
+		package singlylinkedlist;
+
+		import java.util.ArrayList;
+		import java.util.Comparator;
+		import java.util.HashSet;
+		import java.util.List;
+		import java.util.Set;
+		import java.util.stream.Collectors;
+
+		public class LinkedList {
+
+			private static class Node {
+				private int data;
+				private Node next;
+
+				public Node(int data) {
+					this.data = data;
+					this.next = null;
+				}
+
+				@Override
+				public String toString() {
+					return "Node [data=" + data + ", next=" + next + "]";
+				}
+			}
+
+			// Given a Head of LL, display all its elemets
+			public static void display(Node head) {
+				if (head == null) {
+					System.out.println("Empty Linked List");
+					return;
+				}
+				Node current = head;
+				while (current != null) {
+					System.out.print(current.data + "--->");
+					current = current.next;
+				}
+				System.out.println(current);
+			}
+
+			// Given a head of LL, find the length of LL
+			public static int getLength(Node head) {
+				if (head == null) {
+					System.out.println("List is empty");
+					return 0;
+				}
+				Node current = head;
+				int count = 0;
+
+				while (current != null) {
+					count++;
+					current = current.next;
+				}
+				return count;
+			}
+
+			// Given the head of LL and data, insert at beginning
+			public static Node insertAtBegginning(Node head, int data) {
+				Node newNode = new Node(data);
+				if (head == null) {
+					return newNode;
+				}
+				newNode.next = head;
+				return head = newNode;
+			}
+
+			// Given Head Of LL and data, Insert at End
+			public static Node insertAtEnd(Node head, int data) {
+				Node newNode = new Node(data);
+				if (head == null) {
+					return newNode;
+				}
+				Node current = head;
+				while (current.next != null) {
+					current = current.next;
+				}
+				current.next = newNode;
+				return head;
+			}
+
+			// Given a Node, Insert After that particular Node
+			public static void insertAfter(Node previous, int data) {
+				if (previous == null) {
+					System.out.println("Previous cant be empty");
+					return;
+				}
+				Node newNode = new Node(data);
+				newNode.next = previous.next;
+				previous.next = newNode;
+			}
+
+			// Given a head, data and position, insert at the particular position
+			public static Node insertAtPosition(Node head, int data, int position) {
+
+				if (position < 1 && position > getLength(head) + 1) {
+					System.out.println("Invalid Postion.");
+					return null;
+				}
+				Node newNode = new Node(data);
+				if (position == 1) {
+					newNode.next = head;
+					head = newNode;
+					return head;
+				}
+
+				Node previous = head;
+				int count = 1;
+				while (count < position - 1) {
+					count++;
+					previous = previous.next;
+				}
+				newNode.next = previous.next;
+				previous.next = newNode;
+				return head;
+			}
+
+			// Given the Head of LL, Delete the FirstElement of LL
+			public static Node deleteAtBeginning(Node head) {
+				if (head == null) {
+					System.out.println("List is Empty");
+					return head;
+				}
+
+				Node temp = head;
+				head = head.next;
+				temp.next = null;
+				return temp;
+			}
+
+			// Given the Head of LL, delete the last element of LL
+			public static Node deleteLast(Node head) {
+				if (head == null) {
+					System.out.println("List is Empty");
+					return head;
+				}
+				Node last = head;
+				Node previousToLast = null;
+				while (last.next != null) {
+					previousToLast = last;
+					last = last.next;
+				}
+				previousToLast.next = null;
+				return last;
+			}
+
+			// Given the Head of the Node and Position, Delete the at Particular Node
+			public static Node deleteAtPosition(Node head, int position) {
+				Node nodeDelete = head;
+				Node previousToDelete = null;
+				int count = 1;
+
+				if (position < 1 || position > getLength(head) + 1) {
+					System.out.println("Invalid Position");
+					return head;
+				}
+
+				if (position == 1) {
+					Node temp = head;
+					head = head.next;
+					return temp;
+				}
+
+				while (count < position) {
+					count++;
+					previousToDelete = nodeDelete;
+					nodeDelete = nodeDelete.next;
+				}
+				previousToDelete.next = nodeDelete.next;
+				nodeDelete.next = null;
+				return nodeDelete;
+			}
+
+			// Given Head and element, return true or false
+			public static boolean searchForElement(Node head, int data) {
+				boolean isFound = false;
+
+				if (head == null) {
+					System.out.println("List is Empty.");
+					return isFound;
+				}
+				Node currentNode = head;
+				while (currentNode != null) {
+					if (currentNode.data == data) {
+						isFound = true;
+						break;
+					}
+					currentNode = currentNode.next;
+				}
+				return isFound;
+			}
+			
+			// Given the head of LL, find the Nth element from Beginning
+			public static Node getNthElement(Node head, int position) {
+				if(head == null) {
+					System.out.println("List is Empty.");
+					return head;
+				}
+				if(position < 1 && position > getLength(head)) {
+					System.out.println("Invalid Postion.");
+					return head;
+				}
+				int count = 1;
+				Node current = head;
+				while (count< position) {
+					count++;
+					current = current.next;
+				}
+				return current;
+			}
+			
+			// Given Head of LL, find Nth element from End
+			public static Node findNthElementFromEnd(Node head, int position) {
+				if(head == null) {
+					System.out.println("List is Empty.");
+					return head;
+				}
+				
+				if( position < 1 && position > getLength(head)) {
+					System.out.println("Invalid Postion");
+					return head;
+				}
+				
+				Node refPointer = head;
+				Node mainPointer = head;
+				int count = position;
+				while(count<= position) {
+					refPointer = refPointer.next;
+					count++;
+				}
+				while(refPointer!=null) {
+					mainPointer = mainPointer.next;
+					refPointer = refPointer.next;
+				}
+				return mainPointer;
+			}
+
+			// Give Head, reverse a List
+			public static Node reverseLinkedList(Node head) {
+				if (head == null) {
+					System.out.println("List is Empty.");
+					return head;
+				}
+				Node current = head;
+				Node next = null;
+				Node previous = null;
+				while (current != null) {
+					next = current.next;
+					current.next = previous;
+					previous = current;
+					current = next;
+				}
+				return previous;
+			}
+
+			// Given Head of List, find middle of List
+			public static Node middleOfList(Node head) {
+				if(head == null) {
+					System.out.println("List is Empty.");
+					return head;
+				}
+				Node fastPointer = head;
+				Node slowPointer = head;
+
+				while (fastPointer != null && slowPointer.next != null) {
+					slowPointer = slowPointer.next;
+					fastPointer = fastPointer.next.next;
+				}
+				return slowPointer;
+			}
+			
+			
+			// Given Head of LL, remove all Duplicates
+			public static Node removeDuplicates(Node head) {
+				Node current = head;
+				Node previous = null;
+				Set<Integer> set = new HashSet<>();
+				while(current!=null) {
+					if(set.contains(current.data)) {
+						previous.next = current.next;
+					} else {
+						set.add(current.data);
+						previous = current;
+					}
+					current = current.next;
+				}
+				return head;
+			}
+			
+			
+			public static Node sortLinkdedList(Node head) {
+				Node current = head;
+				
+				List<Integer> dataList = new ArrayList<>();
+				while(current != null) {
+					dataList.add(current.data);
+					current = current.next;
+				}
+				List<Node> collect = dataList.stream().sorted(Comparator.naturalOrder()).map(Node::new).collect(Collectors.toList());
+					
+				return head;
+			}
+			
+			// Give a Sorted List and Head, Insert a Data at Appropriate Place
+			public static Node insertNodeInSortedList(Node head, int data) {
+				
+				Node current = head;
+				Node previous = null;
+						
+				while(current!= null && current.data < data) {
+					previous = current;
+					current = current.next;
+				}
+				Node newNode = new Node(data);
+				previous.next = newNode;
+				newNode.next = current;
+				return head;
+						
+			}
+			
+			// Given a Head and remove the key from the Linked List
+			public static Node removeGivenKeyFromList(Node head, int data) {
+				Node current = head;
+				Node previous = null;
+				
+				while(current!= null && data!=current.data) {
+					previous = current;
+					current = current.next;
+				}
+				previous.next = current.next;
+				return head;
+			}
+			
+			// Given a LinkedList, detect a Loop
+			public static boolean containsLoop(Node head) {
+				Node fastPtr = head;
+				Node slwPtr = head;
+				
+				while(fastPtr!=null && fastPtr.next!=null) {
+					fastPtr = fastPtr.next.next;
+					slwPtr = slwPtr.next;
+					if(slwPtr == fastPtr) {
+						return true;
+					}
+				}
+				return false;
+			}
+			
+			
+
+			public static void main(String[] args) {
+
+				Node head = new Node(10);
+				Node second = new Node(11);
+				Node third = new Node(1);
+				Node fourth = new Node(18);
+
+				head.next = second;
+				second.next = third;
+				third.next = fourth;
+				fourth.next = null;
+				
+				
+				
+
+				display(head);
+				System.out.println("Length of LL: " + getLength(head));
+				head = insertAtBegginning(head, 25);
+				display(head);
+				head = insertAtEnd(head, 7);
+				display(head);
+				insertAfter(third, 45);
+				display(head);
+				insertAtPosition(head, 35, 3);
+				display(head);
+		//		deleteAtBeginning(head);
+		//		display(head);
+				deleteLast(head);
+				display(head);
+				deleteAtPosition(head, 3);
+				display(head);
+				boolean isThere = searchForElement(head, 46);
+				System.out.println("Is There Element: " + isThere);
+
+		//		head = reverseLinkedList(head);
+		//		display(head);
+		//		System.out.println("middle of List: "+middleOfList(head).data);
+		//		System.out.println("Element at Nth Position: 4 -->"+getNthElement(head, 3));
+				
+				head = insertAtBegginning(head, 45);
+				head = insertAtEnd(head, 25);
+				head = insertAtPosition(head, 10, 5);
+				head = insertAtPosition(head, 11, 1);
+				display(head);
+				head = removeDuplicates(head);
+				System.out.println("============");
+				display(head);
+				//insertNodeInSortedList(head, 1);
+		//		head = sortLinkdedList(head);
+		//		display(head);
+				head = removeGivenKeyFromList(head, 10);
+				display(head);
+		
+			}
+		}
+
+		
+		
+		
+--------------------------------------------------------------------	
+		
+		
