@@ -115,7 +115,7 @@
 		}
 ----------------------------------------------------------
 
-## Move all the Zero to End or Beginning of Array
+## Move all the Zero to End of Array
 
 
 	Code Snippet of Moving Zero's to End:
@@ -133,7 +133,27 @@
 		}
 
 ----------------------------------------------------------
-		
+## Move all the Zero to Beginning of Array	
+	Code Snippet of Moving Zero's to End:
+	
+		public static int[] moveZeroToBeginning(int array[]) {
+			int counter = array.length -1;
+
+			for(int i = array.length -1;i>=0; i--) {
+				if(array[i]!=0) {
+					array[counter] = array[i];
+					counter--;
+				}
+			}
+
+			while(counter >= 0) {
+				array[counter] = 0;
+				counter--;
+			}
+			return array;
+		}
+----------------------------------------------------------
+
 ## 	Reverse an Array
 
 	Code Snippet:
