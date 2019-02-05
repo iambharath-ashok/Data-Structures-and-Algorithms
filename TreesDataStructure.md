@@ -1,0 +1,301 @@
+
+# Trees
+
+
+-	Tree is a non-linear data structure used for storing data
+-	Tree is made up nodes and edges without having any cycles
+-	Each node in tree can point to n other nodes in a tree
+-	Tree is used to represent hierarchical structure with a parent node called ROOT Node
+
+
+## Binary Trees
+
+-	A Tree is called Binary Tree, if each node has zero, one or two nodes
+
+
+---------------------------------------------------------------
+
+### Representation of TreeNode 
+
+
+	Code Snippet:
+	
+		class BinaryTree{
+		
+			private TreeNode root;
+		
+				public class TreeNode {
+			
+				int data;
+				TreeNode left;
+				TreeNode right;
+				
+				public TreeNode(int data) {
+					this.data = data;
+					this.left = null;
+					this.right = null;
+				}
+			}
+		}
+---------------------------------------------------------------	
+		
+## 	Creating Binary Tree
+
+	Code Snippet:
+	
+		public void createBinaryTree() {
+		
+			TreeNode first = new TreeNode(10);
+			TreeNode  second = new TreeNode(20);
+			TreeNode third = new TreeNode(30);
+			TreeNode fourth = new TreeNode(40);
+			TreeNode fifth = new TreeNode(50);
+			TreeNode sixth = new TreeNode(50);
+			
+			root = first;
+			
+			first.left = second;
+			first.right = third;
+			
+			second.left = fourth;
+			second.right = sixth;
+
+			third.left = fifth;
+		}
+		
+---------------------------------------------------------------	
+
+
+## Tree Traversals
+
+- 	PreOrder Traversals
+-	InOrder Traversals
+-	PostOrder Traversals
+-	LevelOrder Traversals
+
+
+### PreOrder Traversals 
+
+-	Visit Root Node
+-	Traverse left subtree in PreOrder fashion
+-	Traverse right subtree in PreOrder fashion
+
+
+### Recursive way
+
+
+	Code Snippet:
+	
+		public void preOrder(TreeNode root) {
+			
+			if(node == null) {
+				return;
+			}
+			sop(root.data);
+			preOrder(root.left);
+			preOrder(root.right);
+		}
+
+
+		
+###	Iterative Way
+
+
+
+
+## Full Program
+
+package trees;
+
+import java.util.Stack;
+
+public class BinaryTree {
+	
+	private TreeNode root;
+	
+	private class TreeNode {
+		private int data;
+		private TreeNode left;
+		private TreeNode right;
+		
+		private TreeNode(int data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+	
+	private void createBinaryTree() {
+		TreeNode first = new TreeNode(10);
+		TreeNode second = new TreeNode(20);
+		TreeNode third = new TreeNode(30);
+		TreeNode fourth = new TreeNode(40);
+		TreeNode fifth = new TreeNode(50);
+		TreeNode sixth = new TreeNode(60);
+		TreeNode seventh = new TreeNode(70);
+		TreeNode eigth = new TreeNode(80);
+		
+		this.root = first;
+		
+		first.left = second;
+		first.right = third;
+		
+		second.left = fourth;
+		second.right = fifth;
+		
+		third.left = sixth;
+		third.right = seventh;
+		
+		fourth.left = eigth;
+	}
+	
+	public void preOrderRecursive(TreeNode root) {
+		if(root == null) { // Base Condition
+			return;
+		}
+		System.out.print(root.data+" ");
+		preOrderRecursive(root.left);
+		preOrderRecursive(root.right);
+	}
+	
+	public void inOrderRecursive(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		inOrderRecursive(root.left);
+		System.out.print(root.data+" ");
+		inOrderRecursive(root.right);
+	}
+
+	public void postOrderRecursive(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		postOrderRecursive(root.left);
+		postOrderRecursive(root.right);
+		System.out.print(root.data+" ");
+	}
+	
+	public static void main(String[] args) {
+		BinaryTree bt = new BinaryTree();
+		bt.createBinaryTree();
+		System.out.println("PreOrder Traversal");
+		bt.preOrderRecursive(bt.root);
+		System.out.println("\nInOrder Traversal");
+		bt.inOrderRecursive(bt.root);
+		System.out.println("\nPostOrder Traversal");
+		bt.postOrderRecursive(bt.root);
+		
+		System.out.println("\nPreOrder Traversal Iterative");
+		bt.preOrderIterative(bt.root);
+		System.out.println("\nInOrder Traversal Iterative");
+		bt.inOrderIterative(bt.root);
+	}
+	
+	
+	public void preOrderIterative(TreeNode root) {
+		
+		if(root == null) {
+			return;
+		}
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(root);
+		while(!stack.isEmpty()) {
+			TreeNode temp = stack.pop();
+			System.out.print(temp.data+" ");
+			if(temp.right!=null) {
+				stack.push(temp.right);
+			} 
+			if(temp.left!=null) {
+				stack.push(temp.left);
+			}
+		}
+	}
+	
+	
+	public void inOrderIterative(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		TreeNode temp = root;
+		while(!stack.isEmpty()|| temp!=null) {
+			if(temp!=null) {
+				stack.push(temp);
+				temp = temp.left;
+			} else {
+				temp = stack.pop();
+				System.out.print(temp.data+" ");
+				temp = temp.right;
+			}
+		}
+	}
+	
+	public void postOrderIterative(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		TreeNode temp = root;
+		
+		while(!stack.isEmpty()|| temp!=null) {
+			if(temp != null) {
+				stack.push(temp);
+				temp = temp.left;
+			} else {
+				temp = stack.pop();
+				temp = temp.right;
+				System.out.print(temp.data+" ");
+			}
+		}
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
