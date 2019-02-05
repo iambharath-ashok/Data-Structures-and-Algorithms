@@ -172,3 +172,33 @@
 			return array;
 		}
 ----------------------------------------------------------		
+## Second Largest Element of Array:
+
+	Code Snippet:
+	
+		public static void findSecondLargest(int [] array) {
+		
+				if(array.length < 2) {
+					System.out.println("Invalid Array.");
+					return;
+				}
+				
+				int firstLargest = array[0];
+				int secondLargest = array[1];
+				
+				if(firstLargest < secondLargest) {
+					firstLargest = array[1];
+					secondLargest = array[0];
+				}
+				
+				for(int i =2; i < array.length; i++) {
+					if(array[i] > firstLargest) {
+						secondLargest = firstLargest;
+						firstLargest = array[i];
+					} else if(array[i] < firstLargest && array[i] > secondLargest) {
+						secondLargest = array[i];
+					}
+				}
+			}			
+			System.out.println("Second Largest of Array is: "+ secondLargest);
+		}
