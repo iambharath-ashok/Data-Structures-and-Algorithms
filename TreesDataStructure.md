@@ -1,4 +1,3 @@
-
 # Trees
 
 
@@ -68,20 +67,20 @@
 
 ## Tree Traversals
 
-- 	PreOrder Traversals
--	InOrder Traversals
--	PostOrder Traversals
--	LevelOrder Traversals
+- 	PreOrder Traversal
+-	InOrder Traversal
+-	PostOrder Traversal
+-	LevelOrder Traversal
+---------------------------------------------------------------
 
-
-### PreOrder Traversals 
+## PreOrder Traversals 
 
 -	Visit Root Node
 -	Traverse left subtree in PreOrder fashion
 -	Traverse right subtree in PreOrder fashion
 
 
-### Recursive way
+### Recursive 
 
 
 	Code Snippet:
@@ -98,66 +97,38 @@
 
 
 		
-###	Iterative Way
+### Iterative 
 
-
-
-
-## Full Program
-
-package trees;
-
-import java.util.Stack;
-
-public class BinaryTree {
+	Code Snippet:
 	
-	private TreeNode root;
-	
-	private class TreeNode {
-		private int data;
-		private TreeNode left;
-		private TreeNode right;
+		public void preOrderIterative(TreeNode root) {
 		
-		private TreeNode(int data) {
-			this.data = data;
-			this.left = null;
-			this.right = null;
+			if(root == null) {
+				return;
+			}
+			Stack<TreeNode> stack = new Stack<>();
+			stack.push(root);
+			while(!stack.isEmpty()) {
+				TreeNode temp = stack.pop();
+				System.out.print(temp.data+" ");
+				if(temp.right!=null) {
+					stack.push(temp.right);
+				} 
+				if(temp.left!=null) {
+					stack.push(temp.left);
+				}
+			}
 		}
-	}
-	
-	private void createBinaryTree() {
-		TreeNode first = new TreeNode(10);
-		TreeNode second = new TreeNode(20);
-		TreeNode third = new TreeNode(30);
-		TreeNode fourth = new TreeNode(40);
-		TreeNode fifth = new TreeNode(50);
-		TreeNode sixth = new TreeNode(60);
-		TreeNode seventh = new TreeNode(70);
-		TreeNode eigth = new TreeNode(80);
+
+--------------------------------------------------------------
+
+## InOrder Traversal
+
+### Recursive 
+
+	Code Snippet:
 		
-		this.root = first;
 		
-		first.left = second;
-		first.right = third;
-		
-		second.left = fourth;
-		second.right = fifth;
-		
-		third.left = sixth;
-		third.right = seventh;
-		
-		fourth.left = eigth;
-	}
-	
-	public void preOrderRecursive(TreeNode root) {
-		if(root == null) { // Base Condition
-			return;
-		}
-		System.out.print(root.data+" ");
-		preOrderRecursive(root.left);
-		preOrderRecursive(root.right);
-	}
-	
 	public void inOrderRecursive(TreeNode root) {
 		if(root == null) {
 			return;
@@ -167,135 +138,277 @@ public class BinaryTree {
 		inOrderRecursive(root.right);
 	}
 
-	public void postOrderRecursive(TreeNode root) {
-		if(root == null) {
-			return;
-		}
-		postOrderRecursive(root.left);
-		postOrderRecursive(root.right);
-		System.out.print(root.data+" ");
-	}
+### Iterative
 	
-	public static void main(String[] args) {
-		BinaryTree bt = new BinaryTree();
-		bt.createBinaryTree();
-		System.out.println("PreOrder Traversal");
-		bt.preOrderRecursive(bt.root);
-		System.out.println("\nInOrder Traversal");
-		bt.inOrderRecursive(bt.root);
-		System.out.println("\nPostOrder Traversal");
-		bt.postOrderRecursive(bt.root);
-		
-		System.out.println("\nPreOrder Traversal Iterative");
-		bt.preOrderIterative(bt.root);
-		System.out.println("\nInOrder Traversal Iterative");
-		bt.inOrderIterative(bt.root);
-	}
+	Code Snippet:
 	
-	
-	public void preOrderIterative(TreeNode root) {
-		
-		if(root == null) {
-			return;
-		}
-		Stack<TreeNode> stack = new Stack<>();
-		stack.push(root);
-		while(!stack.isEmpty()) {
-			TreeNode temp = stack.pop();
-			System.out.print(temp.data+" ");
-			if(temp.right!=null) {
-				stack.push(temp.right);
-			} 
-			if(temp.left!=null) {
-				stack.push(temp.left);
+		public void inOrderIterative(TreeNode root) {
+			if(root == null) {
+				return;
+			}
+			
+			Stack<TreeNode> stack = new Stack<TreeNode>();
+			TreeNode temp = root;
+			while(!stack.isEmpty()|| temp!=null) {
+				if(temp!=null) {
+					stack.push(temp);
+					temp = temp.left;
+				} else {
+					temp = stack.pop();
+					System.out.print(temp.data+" ");
+					temp = temp.right;
+				}
 			}
 		}
-	}
+
+-----------------------------------------------------------------------
+
+##	PostOrder Traversal
+
+
+### Recursive Traversal
+
+	Code Snippet:
 	
-	
-	public void inOrderIterative(TreeNode root) {
-		if(root == null) {
-			return;
-		}
+		public void postOrderRecursive(TreeNode root) {
+			if(root == null) {
+				return;
+			}
+			
+			postOrderRecursive(root.left);
+			postOrderRecursive(root.right);
+			System.out.println(root.data):
 		
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-		TreeNode temp = root;
-		while(!stack.isEmpty()|| temp!=null) {
-			if(temp!=null) {
-				stack.push(temp);
-				temp = temp.left;
-			} else {
-				temp = stack.pop();
-				System.out.print(temp.data+" ");
-				temp = temp.right;
+		}
+	
+### Iterative Traversal
+
+	Code Snippet:
+	
+	
+		public void postOrderIterative(TreeNode root){
+			
+			if(root == null) {
+				return;
+			}
+			
+			Stack<TreeNode> stack = new TreeNode<>();
+			Stack<Integer> out = new Stack<>();
+			stack.push(root);
+			
+			while(!stack.isEmpty()) {
+				
+				TreeNode current = stack.pop();
+				out.push(current.data);
+				
+				if(temp.left!=null){
+					stack.push(temp.left):
+				} 
+				
+				if(temp.right!=null) {
+					stack.push(temp.right);
+				}
+			}
+			
+			while(!out.isEmpty()) {
+				System.out.println(out.pop());
+			}
+		
+		}
+----------------------------------------------------------------------		
+## Level Order Traversal 
+
+-	In Level Order Traversal, we visit the nodes level by level
+-	In Level Order Traversal technique first we visit level 1, level 2, level 3 and So on...
+-	Queue Data Structure will be used for Level Order Traversing
+
+	Code Snippet:
+	
+	
+		public void levelOrder(TreeNode root) {
+		
+			if(root == null) {
+				return;
+			}
+			
+			Queue<TreeNode> queue = new LinkedList<>();
+			queue.offer(root);
+			
+			while(!queue.isEmpty()) {
+				TreeNode current = queue.poll();
+				System.out.println(current.data);
+				
+				if(current.left != null){
+					queue.offer(temp.left);
+				}
+				if(current.right != null) {
+					queue.offer(temp.right);
+				}
 			}
 		}
-	}
-	
-	public void postOrderIterative(TreeNode root) {
-		if(root == null) {
-			return;
-		}
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-		TreeNode temp = root;
 		
-		while(!stack.isEmpty()|| temp!=null) {
-			if(temp != null) {
-				stack.push(temp);
-				temp = temp.left;
-			} else {
-				temp = stack.pop();
-				temp = temp.right;
-				System.out.print(temp.data+" ");
+----------------------------------------------------------------------		
+## Full Program
+
+	Code Snippet:
+	
+		
+		package trees;
+		import java.util.Stack;
+
+		public class BinaryTree {
+			
+			private TreeNode root;
+			
+			private class TreeNode {
+				private int data;
+				private TreeNode left;
+				private TreeNode right;
+				
+				private TreeNode(int data) {
+					this.data = data;
+					this.left = null;
+					this.right = null;
+				}
 			}
+			
+			private void createBinaryTree() {
+				TreeNode first = new TreeNode(10);
+				TreeNode second = new TreeNode(20);
+				TreeNode third = new TreeNode(30);
+				TreeNode fourth = new TreeNode(40);
+				TreeNode fifth = new TreeNode(50);
+				TreeNode sixth = new TreeNode(60);
+				TreeNode seventh = new TreeNode(70);
+				TreeNode eigth = new TreeNode(80);
+				
+				this.root = first;
+				
+				first.left = second;
+				first.right = third;
+				
+				second.left = fourth;
+				second.right = fifth;
+				
+				third.left = sixth;
+				third.right = seventh;
+				
+				fourth.left = eigth;
+			}
+			
+			public void preOrderRecursive(TreeNode root) {
+				if(root == null) { // Base Condition
+					return;
+				}
+				System.out.print(root.data+" ");
+				preOrderRecursive(root.left);
+				preOrderRecursive(root.right);
+			}
+			
+			public void inOrderRecursive(TreeNode root) {
+				if(root == null) {
+					return;
+				}
+				inOrderRecursive(root.left);
+				System.out.print(root.data+" ");
+				inOrderRecursive(root.right);
+			}
+
+			public void postOrderRecursive(TreeNode root) {
+				if(root == null) {
+					return;
+				}
+				postOrderRecursive(root.left);
+				postOrderRecursive(root.right);
+				System.out.print(root.data+" ");
+			}
+			
+			public static void main(String[] args) {
+				BinaryTree bt = new BinaryTree();
+				bt.createBinaryTree();
+				System.out.println("PreOrder Traversal");
+				bt.preOrderRecursive(bt.root);
+				System.out.println("\nInOrder Traversal");
+				bt.inOrderRecursive(bt.root);
+				System.out.println("\nPostOrder Traversal");
+				bt.postOrderRecursive(bt.root);
+				
+				System.out.println("\nPreOrder Traversal Iterative");
+				bt.preOrderIterative(bt.root);
+				System.out.println("\nInOrder Traversal Iterative");
+				bt.inOrderIterative(bt.root);
+				System.out.println("\nPostOrder Traversal Iterative");
+				bt.postOrderIterative(bt.root);
+			}
+			
+			
+			public void preOrderIterative(TreeNode root) {
+				
+				if(root == null) {
+					return;
+				}
+				Stack<TreeNode> stack = new Stack<>();
+				stack.push(root);
+				while(!stack.isEmpty()) {
+					TreeNode temp = stack.pop();
+					System.out.print(temp.data+" ");
+					if(temp.right!=null) {
+						stack.push(temp.right);
+					} 
+					if(temp.left!=null) {
+						stack.push(temp.left);
+					}
+				}
+			}
+			
+			
+			public void inOrderIterative(TreeNode root) {
+				if(root == null) {
+					return;
+				}
+				
+				Stack<TreeNode> stack = new Stack<TreeNode>();
+				TreeNode temp = root;
+				while(!stack.isEmpty()|| temp!=null) {
+					if(temp!=null) {
+						stack.push(temp);
+						temp = temp.left;
+					} else {
+						temp = stack.pop();
+						System.out.print(temp.data+" ");
+						temp = temp.right;
+					}
+				}
+			}
+			
+			public void postOrderIterative(TreeNode root) {
+				if(root == null) {
+					return;
+				}
+				
+				Stack<TreeNode> stack = new Stack<>();
+				Stack<Integer> out = new Stack<>();
+				
+				stack.push(root);
+				
+				while(!stack.isEmpty()) {
+					TreeNode current = stack.pop();
+					out.push(current.data);
+					
+					if(current.left != null) {
+						stack.push(current.left);
+					}
+					if(current.right!=null) {
+						stack.push(current.right);
+					}
+					
+				}
+				
+				while(!out.isEmpty()) {
+					System.out.print(out.pop()+" ");
+				}
+				
+			}
+			
 		}
-		
-	}
-	
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
