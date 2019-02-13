@@ -1,6 +1,30 @@
 #	Sorting Techniques
 
+-----------------------------------------------
 ## Quick Sort Algorithm
+
+### What is Heap sort algorithm?
+
+-	Heap sort is a comparison-based sorting algorithm
+-	Heap sort can be thought of as an improved selection sort
+-	It divides its input into a sorted and an unsorted region,
+-	And it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region
+
+The improvement consists of the use of a heap data structure rather than a linear-time search to find the maximum
+
+## What are properties of Heap sort?
+
+-	Not stable
+-	O(1) extra space
+-	O(n·lg(n)) time
+-	Not really adaptive
+
+## What is performance of Heap sort?
+
+-	Worst-case performance	O(nlog n)
+-	Best-case performance	O(nlog n)
+-	Average performance	O(nlog n)
+-	Worst-case space complexity	O(1) auxiliary
 
 ### Pivot
 
@@ -176,6 +200,30 @@
 	-	Divide: In this phase,we will divide the elements into two halves
 	-	Conquer: In this phase, we sort and merge the divided arrays 
 	
+## What is merge sort?
+
+-	Merge sort is a sorting technique based on divide and conquer rule
+-	With worst-case time complexity being Ο(n log n), it is one of the most respected algorithms
+-	Merge sort first divides the array into equal halves and then combines them in a sorted manner
+
+## What are properties of merge sort?
+
+-	Stable
+-	Θ(n) extra space for arrays
+-	Θ(lg(n)) extra space for linked lists
+-	Θ(n·lg(n)) time
+-	Not adaptive
+-	Does not require random access to data
+
+## What is performance of merge sort?
+
+-	Worst-case performance	O(n log n)
+-	Best-case performance	O(n log n) typical, O(n) natural variant
+-	Average performance	O(n log n)
+-	Worst-case space complexity	О(n) total, O(n) auxiliary
+
+
+	
 	Code Snippet:
 	
 		package sorting;
@@ -258,6 +306,24 @@
 -	Average case of Insertion sort is O(n^2)
 -	Insertion Sort is better than Bubble sort and Selection Sort
 
+
+## Properties of Insertion sort?
+-	Stable
+-	O(1) extra space
+-	O(n2) comparisons and swaps
+-	Adaptive: O(n) time when nearly sorted
+-	Very low overhead
+
+
+
+## What is Performance of insertion sort?
+
+-	Worst-case performance	О(n2) comparisons, swaps
+-	Best-case performance	O(n) comparisons, O(1) swaps
+-	Average performance	О(n2) comparisons, swaps
+-	Worst-case space complexity	О(n) total, O(1) auxiliary
+
+
 	Code Snippet:
 	
 		package sorting;
@@ -305,8 +371,6 @@
 		}
 
 ----------------------------------------------------------
-
-
 ## Selection Sort
 
 -	Simplest Algorithm
@@ -315,6 +379,36 @@
 -	Selection Sort is applicable for smaller data sets
 -	Selection runs in O(n^2)
 -	Space Complexity of Selection Sort is O(1)
+
+## Properties of Selection sort algorithm
+
+-  Not stable
+-  O(1) extra space
+-  Θ(n2) comparisons
+-  Θ(n) swaps
+-  Not adaptive		
+	
+## When to use Selection sort?
+
+-	Selection sort should never be used
+-	It does not adapt to the data in any way , so its runtime is always quadratic
+-	Selection sort has the property of minimizing the number of swaps
+-	In applications where the cost of swapping items is high, selection sort very well may be the algorithm of choice
+
+## What is performance of selection sort in Big'O?
+
+-   Worst-case performance	О(n2)
+-   Best-case performance	О(n2)
+-   Average performance	О(n2)
+-   Worst-case space Complexity	О(n) total, O(1) auxiliary
+	
+## Advantages Selection sort?
+
+-	It is very simple
+-	It is very efficient for small data sets
+-	It is stable; i.e., it does not change the relative order of elements with equal keys
+-	In-place; i.e., only requires a constant amount O(1) of additional memory space
+
 
 	Code Snippet:
 
@@ -362,6 +456,7 @@
 
 		}
 
+
 ----------------------------------------------------------
 ## Bubble Sort
 
@@ -370,6 +465,20 @@
 -	Bubble sort is slower and time consuming algorithm
 -	Order of Algorithm of Bubble Sort is Time Complexity O(n) and Space Complexity is O(1)
 
+### What are Properties of Bubble Sort?
+
+-	Stable
+-	O(1) extra space
+-	O(n2) comparisons and swaps
+-	Adaptive: O(n) when nearly sorted
+
+
+## What is Performance of Bubble Sort?
+
+-	Worst-case performance	O(n^{2})
+-	Best-case performance	O(n)
+-	Average performance	 O(n^{2})
+-	Worst-case space complexity	O(1) auxiliary
 
 	Code Snippet:
 		
@@ -416,12 +525,22 @@
 				System.out.println(Arrays.toString(array));
 			}
 		}
+		
+	Order of Algorithm:
+
+		Time Complexity: O(n)
+		Space Complexity: O (1)
 
 ----------------------------------------------------------		
 		
 ## Shell Sort
 
--	
+-	Shell Sort is a generalization of insertion sort 
+-	Shell Sort overcomes the drawbacks of insertion sort by comparing elements separated by a gap of several positions
+-	In general, Shell sort performs the following steps
+
+	-	Step 1: Arrange the elements in the tabular form and sort the columns by using insertion sort
+	-	Step 2: Repeat Step 1; each time with smaller number of longer columns in such a way that at the end, there is only one column of data to be sorted
 
 
 
