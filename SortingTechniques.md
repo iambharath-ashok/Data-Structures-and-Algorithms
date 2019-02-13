@@ -535,34 +535,59 @@ The improvement consists of the use of a heap data structure rather than a linea
 		
 ## Shell Sort
 
--	Shell Sort is a generalization of insertion sort 
+-	Shell Sort is a generalized version of insertion sort. It is an in–place comparison sort
+-	Shell Sort is also known as diminishing increment sort
+-	This algorithm uses insertion sort on the large interval of elements to sort
+-	Then the interval of sorting keeps on decreasing in a sequence until the interval reaches 1
+-	These intervals are known as gap sequence.
 -	Shell Sort overcomes the drawbacks of insertion sort by comparing elements separated by a gap of several positions
 -	In general, Shell sort performs the following steps
 
 	-	Step 1: Arrange the elements in the tabular form and sort the columns by using insertion sort
 	-	Step 2: Repeat Step 1; each time with smaller number of longer columns in such a way that at the end, there is only one column of data to be sorted
+	
+-	This algorithm works quite efficiently for small and medium size array as its average time complexity is near to O(n)
 
 
+### key points of shell sort algorithm –
 
+-	Shell Sort is a comparison based sorting
+-	Time complexity of Shell Sort depends on gap sequence 
+-	Its best case time complexity is O(n* logn) and worst case is O(n* log2n)
+-	Time complexity of Shell sort is generally assumed to be near to O(n) and less than O(n2) as determining its time complexity is still an open problem.
+-	The best case in shell sort is when the array is already sorted. The number of comparisons is less
+-	It is an in-place sorting algorithm as it requires no additional scratch space
+-	Shell Sort is unstable sort as relative order of elements with equal values may change
+-	It is been observed that shell sort is 5 times faster than bubble sort and twice faster than insertion sort its closest competitor
+-	There are various increment sequences or gap sequences in shell sort which produce various complexity between O(n) and O(n2)
 
+	Code Snippet:
+	
+		public class ShellSortEx {
 
+			public static int shellSort(int[] array) {
 
+				int n = array.length;
 
+				for (int gap = n / 2; gap > 0; gap /= 2) {
+					for (int i = gap; i < n; i++) {
+						int temp = array[i];
+						int j;
+						for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
+							array[j] = array[j - gap];
+						}
+						array[j] = temp;	
+					}
+				}
+				System.out.println(Arrays.toString(array));
+				return 0;
+			}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			public static void main(String[] args) {
+				int [] array = {4,9,8,1,3,5,2};
+				shellSort(array);
+			}
+		}
 
 
 
