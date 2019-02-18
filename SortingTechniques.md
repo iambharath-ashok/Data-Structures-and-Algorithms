@@ -3,29 +3,6 @@
 -----------------------------------------------
 ## Quick Sort Algorithm
 
-### What is Heap sort algorithm?
-
--	Heap sort is a comparison-based sorting algorithm
--	Heap sort can be thought of as an improved selection sort
--	It divides its input into a sorted and an unsorted region,
--	And it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region
-
-The improvement consists of the use of a heap data structure rather than a linear-time search to find the maximum
-
-## What are properties of Heap sort?
-
--	Not stable
--	O(1) extra space
--	O(n·lg(n)) time
--	Not really adaptive
-
-## What is performance of Heap sort?
-
--	Worst-case performance	O(nlog n)
--	Best-case performance	O(nlog n)
--	Average performance	O(nlog n)
--	Worst-case space complexity	O(1) auxiliary
-
 ### Pivot
 
 -	Pivot is an item that we are going to compare with every other item
@@ -588,8 +565,33 @@ The improvement consists of the use of a heap data structure rather than a linea
 				shellSort(array);
 			}
 		}
+		
+-------------------------------------------
+## Heap Sort
 
 
+### What is Heap sort algorithm?
+
+-	Heap sort is a comparison-based sorting algorithm
+-	Heap sort can be thought of as an improved selection sort
+-	It divides its input into a sorted and an unsorted region,
+-	And it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region
+
+The improvement consists of the use of a heap data structure rather than a linear-time search to find the maximum
+
+## What are properties of Heap sort?
+
+-	Not stable
+-	O(1) extra space
+-	O(n·lg(n)) time
+-	Not really adaptive
+
+## What is performance of Heap sort?
+
+-	Worst-case performance	O(nlog n)
+-	Best-case performance	O(nlog n)
+-	Average performance	O(nlog n)
+-	Worst-case space complexity	O(1) auxiliary
 
 
 
