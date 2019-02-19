@@ -402,7 +402,7 @@ In this list below, you will find most of the common searching and sort question
 
 75. How to check if a given year is a leap year in Java? (solution)
 
-===================================
+--------------------------------------------------------------------
 Java Program To Check Whether User Input Is Number Or Not
 How To Launch External Applications Through Java Program
 Java Program To Reverse A String
@@ -529,3 +529,7 @@ Implement Binary Search Tree (BST) post-order traversal (depth first).
 How to check the given Binary Tree is Binary Search Tree (BST) or not?
 How to delete a node from Binary Search Tree (BST)?
 Write a program to find common integers between two sorted arrays.
+
+
+https://www.softwaretestinghelp.com/core-java-interview-questions/
+https://java2blog.com/introduction-to-aws-certifications/
