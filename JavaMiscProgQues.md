@@ -111,7 +111,7 @@ Integer Palindrome: This is generally asked as follow-up or alternative of the p
 		}
 
 -----------------------------------------------------------------
-
+Armstrong number: A number is called an Armstrong number if it is equal to the cube of its each digit. for example, 153 is an Armstrong number because 153= 1+ 125+27 which is equal to 1^3+5^3+3^3. You need to write a program to check if given number is Armstrong number or not.
 	Code Snippet:
 	
 		public static boolean isAmstrong(int number) {
@@ -135,6 +135,35 @@ Integer Palindrome: This is generally asked as follow-up or alternative of the p
 				}
 			}
 			
+		}
+------------------------------------------------------------------------
+GCD: GCD of two numbers
+
+
+	Code Snippet:
+	
+		public static int gcd(int a, int b) {
+			if (b == 0) {
+				return a;
+			}
+
+			int gcd = gcd(b, a % 10);
+			return gcd;
+		}
+
+		public static int gcd2(int num1, int num2) {
+			int gcd = 1;
+			for (int i = 1; i < num1 && i < num2; i++) {
+
+				if (num1 % 1 == 0 && num2 % i == 0) {
+					gcd = i;
+				}
+			}
+			return gcd;
+		}
+
+		public static int lcm(int num1, int num2) {
+			return (num1 * num2) / gcd(num1, num2);
 		}
 
 		
