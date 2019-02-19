@@ -1,4 +1,5 @@
-Fibonacci Series: Write a simple Java program which will print Fibonacci series e.g. 1 1 2 3 5 8 13 ... . up to a given number. Be prepare for cross questions like using iteration over recursion and how to optimize the solution using caching and memoization.
+## Fibonacci Series: 
+Write a simple Java program which will print Fibonacci series e.g. 1 1 2 3 5 8 13 ... . up to a given number. Be prepare for cross questions like using iteration over recursion and how to optimize the solution using caching and memoization.
 
 	Code Snippet:
 	
@@ -61,7 +62,8 @@ Fibonacci Series: Write a simple Java program which will print Fibonacci series 
 			return fibValue;
 		}
 -----------------------------------------------------------------
-Prime number:  Write a Java program to check if a given number is prime or not. Remember, a prime number is a number which is not divisible by any other number e.g. 3, 5, 7, 11, 13, 17 etc. Be prepared for cross e.g. checking till the square root of a number etc.
+## Prime number:
+Write a Java program to check if a given number is prime or not. Remember, a prime number is a number which is not divisible by any other number e.g. 3, 5, 7, 11, 13, 17 etc. Be prepared for cross e.g. checking till the square root of a number etc.
 	
 	Code Snippet:
 	
@@ -84,7 +86,8 @@ Prime number:  Write a Java program to check if a given number is prime or not. 
 		}
 		
 -----------------------------------------------------------------
-Integer Palindrome: This is generally asked as follow-up or alternative of the previous program. This time you need to check if given Integer is palindrome or not. An integer is called palindrome if its equal to its reverse e.g. 1001 is a palindrome but 1234 is not because the reverse of 1234 is 4321 which is not equal to 1234. You can use divide by 10 to reduce the number and modulus 10 to get the last digit. This trick is used to solve this problem.
+## Integer Palindrome: 
+This is generally asked as follow-up or alternative of the previous program. This time you need to check if given Integer is palindrome or not. An integer is called palindrome if its equal to its reverse e.g. 1001 is a palindrome but 1234 is not because the reverse of 1234 is 4321 which is not equal to 1234. You can use divide by 10 to reduce the number and modulus 10 to get the last digit. This trick is used to solve this problem.
 
 
 	Code Snippet:
@@ -111,7 +114,8 @@ Integer Palindrome: This is generally asked as follow-up or alternative of the p
 		}
 
 -----------------------------------------------------------------
-Armstrong number: A number is called an Armstrong number if it is equal to the cube of its each digit. for example, 153 is an Armstrong number because 153= 1+ 125+27 which is equal to 1^3+5^3+3^3. You need to write a program to check if given number is Armstrong number or not.
+## Armstrong number:
+ A number is called an Armstrong number if it is equal to the cube of its each digit. for example, 153 is an Armstrong number because 153= 1+ 125+27 which is equal to 1^3+5^3+3^3. You need to write a program to check if given number is Armstrong number or not.
 	Code Snippet:
 	
 		public static boolean isAmstrong(int number) {
@@ -137,7 +141,8 @@ Armstrong number: A number is called an Armstrong number if it is equal to the c
 			
 		}
 ------------------------------------------------------------------------
-GCD: GCD of two numbers
+## GCD:
+GCD of two numbers
 
 
 	Code Snippet:
@@ -165,5 +170,32 @@ GCD: GCD of two numbers
 		public static int lcm(int num1, int num2) {
 			return (num1 * num2) / gcd(num1, num2);
 		}
+-----------------------------------------------------------
+## Factorial:
+This is one of the simplest programs you can expect on interviews. It is generally asked to see if you can code or not. Sometimes interviewer may also ask about changing a recursive solution to iterative one or vice-versa.
 
+	Code snippet:
+	
+		public static int factorial(int number) {
+
+			if (number <= 0) {
+				return 1;
+			}
+			int fact = number * factorial(number -1);
+			return fact;
+		}
+		
+		public static int fact(int number) {
+			int result = 1;
+			
+			while(number!=0) {
+				result *= number--;
+			}
+			return result;
+		}
+
+		public static void main(String[] args) {
+			int fact = fact(7);
+			System.out.println(fact);
+		}
 		
