@@ -284,3 +284,113 @@ This is one of the simplest programs you can expect on interviews. It is general
 				}
 			}   
 		}
+-----------------------------------------------------------------		
+## Leap Year:
+
+	Code Snippet:
+	
+		public static boolean isLeap(int number) {
+			boolean isLeap = false;
+			
+			if((number % 4 == 0 && number % 100!=0) || number % 400 == 0) {
+				isLeap = true;
+			}
+			
+			return isLeap;
+		}
+
+		public static void main(String[] args) {
+			boolean isLeap = isLeap(100);
+			System.out.println(isLeap);
+		}
+		
+-------------------------------------------------------------------
+## Square Root of a Number:
+
+	Code Snippet:
+	
+		public static int getSqrRoot(int number) {
+			int square = 1, root = 1;
+			
+			while(square <= number ) {
+				root++;
+				square = root * root;
+			}
+			return root - 1;
+		}
+		
+		public static int getSqrRootFunc(int number) {
+			return (int) Math.sqrt(number);
+		}
+		
+		public static void main(String[] args) {
+			System.out.println(getSqrRootFunc(400));;
+		}
+
+-------------------------------------------------------------------
+## Decimal to Binary and Binary to Decimal:
+
+-  	Decimal to Binary can be converted in 3 ways :
+-	Using Stack
+-	Using Array
+-	Using Library Function Integer.toBinaryString();
+
+	Code Snippet:
+	
+		public class DecimalToBinary {
+
+			public static void main(String[] args) {
+				decimalToBinary(45);
+		//		for (int i = 0; i < 25; i++) {
+		//			decimalToBinaryLibraryFunc(i);
+		//		}
+		//		
+		//		binaryToDecimal("1001");
+				decimalToBinaryStack(45);
+			}
+
+			public static void decimalToBinary(int number) {
+				int[] binary = new int[10];
+				int index = 0;
+				while (number != 0) {
+					binary[index++] = number % 2;
+					System.out.print(number + ": ");
+					System.out.println(Arrays.toString(binary));
+					number /= 2;
+				}
+				System.out.print("Binary Representation: ");
+				for(int i = index - 1; i >=0; i-- ) {
+					System.out.print(binary[i]);
+				}
+			}
+			
+			public static void decimalToBinaryStack(int number) {
+				Stack<Integer> stack = new Stack<>();
+				
+				while(number!=0) {
+					stack.push(number % 2);
+					System.out.println(stack);
+					number /= 2;
+				}
+			}
+
+			public static void decimalToBinaryLibraryFunc(int number) {
+				System.out.println(Integer.toBinaryString(number));
+			}
+
+			public static int binaryToDecimal(String binaryString) {
+				return Integer.parseInt(binaryString, 2);
+			}
+
+		}
+
+	Output:
+	
+		Binary Representation: 101101
+		[1]
+		[1, 0]
+		[1, 0, 1]
+		[1, 0, 1, 1]
+		[1, 0, 1, 1, 0]
+		[1, 0, 1, 1, 0, 1]
+-------------------------------------------------------------------				
