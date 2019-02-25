@@ -11,7 +11,8 @@
 -	Quick sort uses Divide and Conquer Algorithm
 -	Very efficient for large data sets
 -	Worst Case of Quick Sort is O(n^2)
--	Average Case of Quick Sort is O(n log n)
+-	Average Case of Quick Sort is O(n log2 n)
+-	Best Case of Quick Sort is O(n log2 n)
 -	Performance of Quick Sort Highly depends on Selection of Pivot
 
 
